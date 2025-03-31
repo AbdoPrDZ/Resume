@@ -1,6 +1,7 @@
 
 import { Github, Link } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CSSProperties } from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface ProjectCardProps {
   github?: string;
   liveLink?: string;
   className?: string;
+  style?: CSSProperties;
 }
 
 const ProjectCard = ({
@@ -18,6 +20,7 @@ const ProjectCard = ({
   github,
   liveLink,
   className,
+  style,
 }: ProjectCardProps) => {
   return (
     <div 
@@ -25,6 +28,7 @@ const ProjectCard = ({
         "bg-card border rounded-lg overflow-hidden card-hover p-6",
         className
       )}
+      style={style}
     >
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       
