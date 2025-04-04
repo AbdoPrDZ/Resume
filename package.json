@@ -1,6 +1,8 @@
 {
-  "name": "vite_react_shadcn_ts",
-  "private": true,
+  "name": "abdopr-portfolio",
+  "description": "Abdo Pr Portfolio - A personal portfolio website showcasing projects, skills, and experience. Built with React, Tailwind CSS, and Radix UI components.",
+  "private": false,
+  "homepage": "https://abdopr.github.io/Resume",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
