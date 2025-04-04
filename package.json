@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "vite build && cp ./.env.production ./dist/.env",
+    "build:dev": "vite build --mode development && cp ./.env.development ./dist/.env",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
