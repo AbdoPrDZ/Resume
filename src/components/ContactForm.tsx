@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,36 +14,57 @@ const ContactForm = ({ className }: ContactFormProps) => {
     email: "",
     message: "",
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/abdopr@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      
-      // Reset submitted state after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
+    }
   };
-  
+
   return (
     <div className={cn("bg-card border rounded-lg p-6", className)}>
       {submitted ? (
         <div className="flex flex-col items-center justify-center text-center py-8">
           <div className="text-primary text-6xl mb-4">✓</div>
-          <h3 className="text-xl font-semibold mb-2">Message sent successfully!</h3>
+          <h3 className="text-xl font-semibold mb-2">
+            Message sent successfully!
+          </h3>
           <p className="text-muted-foreground">
             Thank you for reaching out. I'll get back to you soon.
           </p>
@@ -64,7 +84,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
               required
             />
           </div>
-          
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1">
               Email
@@ -79,7 +99,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
               required
             />
           </div>
-          
+
           <div>
             <label htmlFor="message" className="block text-sm font-medium mb-1">
               Message
@@ -94,12 +114,8 @@ const ContactForm = ({ className }: ContactFormProps) => {
               required
             />
           </div>
-          
-          <Button 
-            type="submit" 
-            className="w-full"
-            disabled={isSubmitting}
-          >
+
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
             {isSubmitting ? "Sending..." : "Send Message"}
           </Button>
         </form>

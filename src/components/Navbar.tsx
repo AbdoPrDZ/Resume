@@ -26,6 +26,12 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const handleNavLinkClick = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className={cn(
       "fixed top-0 left-0 w-full z-50 transition-all duration-300",
@@ -52,6 +58,7 @@ const Navbar = () => {
               key={link.name}
               href={link.href}
               className="text-foreground/80 hover:text-primary transition-colors"
+              onClick={handleNavLinkClick}
             >
               {link.name}
             </a>
@@ -76,7 +83,7 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className="text-foreground/80 hover:text-primary transition-colors"
-                  onClick={toggleMenu}
+                  onClick={handleNavLinkClick}
                 >
                   {link.name}
                 </a>
