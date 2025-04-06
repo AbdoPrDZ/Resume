@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, Github } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logoImage from '../assets/logo.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,8 +39,9 @@ const Navbar = () => {
       scrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
     )}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-4">
-        <a href="#" className="text-2xl font-bold text-primary">
-          AbdoPrDZ
+        <a href="#" className="flex items-center gap-2">
+          <img src={logoImage} alt="AbdoPrDZ" className="h-8 w-auto" />
+          <span className="text-2xl font-bold text-primary">AbdoPrDZ</span>
         </a>
         
         {/* Mobile Menu Toggle */}
@@ -63,15 +65,6 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <a 
-            href="https://github.com/AbdoPrDZ" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-1 text-foreground/80 hover:text-primary transition-colors"
-          >
-            <Github size={20} />
-            <span>GitHub</span>
-          </a>
         </nav>
         
         {/* Mobile Navigation */}
@@ -88,15 +81,6 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="https://github.com/AbdoPrDZ" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1 text-foreground/80 hover:text-primary transition-colors"
-              >
-                <Github size={20} />
-                <span>GitHub</span>
-              </a>
             </nav>
           </div>
         )}

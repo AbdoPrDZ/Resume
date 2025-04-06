@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import {
   Code,
@@ -18,6 +19,8 @@ import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "@/components/theme-provider";
+import ContactInfo, { contactInfo } from "@/components/ContactInfo";
+import logoImage from '../assets/logo.png';
 
 const Index = () => {
   const { theme, setTheme } = useTheme();
@@ -30,7 +33,6 @@ const Index = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-in");
             entry.target.classList.remove("opacity-0");
-            observer.unobserve(entry.target);
           }
         });
       },
@@ -59,6 +61,13 @@ const Index = () => {
       >
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
+            <div className="mb-6 flex justify-center">
+              <img 
+                src={logoImage} 
+                alt="AbdoPrDZ" 
+                className="h-24 w-24 rounded-full border-4 border-primary mb-4 object-cover animate-on-scroll opacity-0" 
+              />
+            </div>
             <h1 className="mb-6 animate-on-scroll opacity-0">
               Hi, I'm{" "}
               <span className="text-primary">Abdelrahmane GUERGUER</span>
@@ -145,6 +154,11 @@ const Index = () => {
                     </span>
                   </li>
                 </ul>
+              </div>
+              
+              <div className="bg-card rounded-lg p-6 border mt-6">
+                <h3 className="text-lg font-medium mb-4">Contact Information</h3>
+                <ContactInfo displayCount={4} />
               </div>
             </div>
           </div>
@@ -266,8 +280,15 @@ const Index = () => {
             className="animate-on-scroll opacity-0"
           />
 
-          <div className="max-w-2xl mx-auto">
-            <ContactForm className="animate-on-scroll opacity-0" />
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="animate-on-scroll opacity-0">
+              <h3 className="text-xl font-bold mb-4">Contact Details</h3>
+              <ContactInfo />
+            </div>
+            
+            <div className="animate-on-scroll opacity-0">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>
